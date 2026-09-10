@@ -1,700 +1,1367 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Central de Links</title>
-<meta name="description" content="Central de links — Lash Laís Martins">
-<meta name="theme-color" content="#211219">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #211219;
-    --bg-2: #2b1a22;
-    --surface: #faf3ee;
-    --surface-2: #f3e8e1;
-    --ink: #2a1620;
-    --ink-soft: #6e5560;
-    --ivory: #f5ede7;
-    --ivory-soft: #cbb9c0;
-    --accent: #c4707d;
-    --accent-deep: #7a2e3d;
-    --sage: #7f9a7a;
-    --danger: #b1584f;
-    --radius: 18px;
-    --radius-sm: 10px;
-    --shadow: 0 12px 30px rgba(19, 8, 13, 0.35);
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#211219">
+  <meta name="description" content="Central de links — Lash Laís Martins">
+  <title>Central de Links — Lash Laís Martins</title>
 
-  *{ box-sizing: border-box; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
 
-  html, body{
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--ivory);
-    font-family: 'Work Sans', sans-serif;
-    -webkit-tap-highlight-color: transparent;
-  }
+  <style>
+    :root {
+      --plum-950: #211219;
+      --plum-900: #2b1a22;
+      --plum-800: #472530;
+      --plum-700: #642d3d;
+      --rose-500: #c4707d;
+      --rose-300: #e4a3a9;
+      --cream-50: #fffaf6;
+      --cream-100: #f8efe9;
+      --cream-200: #f0dfd6;
+      --ink-900: #2a1620;
+      --ink-600: #725761;
+      --sage-500: #7f9a7a;
+      --line-light: rgba(42, 22, 32, 0.13 );
+      --shadow-card: 0 18px 50px rgba(19, 8, 13, 0.2),
+        0 2px 8px rgba(19, 8, 13, 0.08);
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
 
-  body{
-    min-height: 100vh;
-    background:
-      radial-gradient(120% 60% at 50% -10%, rgba(196,112,125,0.16), transparent 60%),
-      var(--bg);
-    display: flex;
-    justify-content: center;
-    padding: 0 0 64px;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  .wrap{
-    width: 100%;
-    max-width: 480px;
-    padding: 44px 20px 0;
-  }
+    html {
+      min-width: 320px;
+      background: var(--plum-950);
+    }
 
-  header{
-    text-align: center;
-    margin-bottom: 34px;
-  }
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      color: var(--cream-50);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(
+          70% 55% at 7% 0%,
+          rgba(196, 112, 125, 0.18),
+          transparent 62%
+        ),
+        radial-gradient(
+          70% 65% at 100% 70%,
+          rgba(100, 45, 61, 0.24),
+          transparent 64%
+        ),
+        var(--plum-950);
+    }
 
-  header .mark{
-    width: 46px;
-    height: 46px;
-    margin: 0 auto 18px;
-    display: block;
-  }
+    body::before {
+      position: fixed;
+      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n )' opacity='.8'/%3E%3C/svg%3E");
+    }
 
-  h1{
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 2rem;
-    letter-spacing: 0.01em;
-    margin: 0 0 6px;
-    color: var(--ivory);
-  }
+    button,
+    input {
+      font: inherit;
+    }
 
-  header p{
-    margin: 0;
-    color: var(--ivory-soft);
-    font-size: 0.92rem;
-    letter-spacing: 0.01em;
-  }
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 3px solid rgba(228, 163, 169, 0.7);
+      outline-offset: 3px;
+    }
 
-  .list{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+    .site-shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
 
-  .card{
-    background: var(--surface);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    transition: box-shadow 0.2s ease;
-  }
+    .page-frame {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.72fr) minmax(500px, 1.28fr);
+      gap: clamp(42px, 8vw, 128px);
+      width: min(1180px, calc(100% - 64px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: clamp(64px, 9vw, 120px) 0 70px;
+    }
 
-  .card-main{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 14px 16px 18px;
-  }
+    .brand-column {
+      display: flex;
+      flex-direction: column;
+      min-height: 600px;
+    }
 
-  .card-name{
-    flex: 1;
-    min-width: 0;
-    font-family: 'Fraunces', serif;
-    font-size: 1.08rem;
-    font-weight: 500;
-    color: var(--ink);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 60px;
+      height: 60px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(245, 237, 231, 0.32);
+      border-radius: 18px;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.02)
+      );
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 16px 35px rgba(10, 3, 6, 0.14);
+    }
 
-  .card-actions{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-  }
+    .brand-mark svg {
+      width: 36px;
+      height: 36px;
+    }
 
-  .btn{
-    border: none;
-    cursor: pointer;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.86rem;
-    border-radius: 999px;
-    padding: 9px 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: transform 0.12s ease, opacity 0.12s ease;
-    white-space: nowrap;
-  }
-  .btn:active{ transform: scale(0.96); }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 20px;
+      color: var(--rose-300);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
 
-  .btn-open{
-    background: var(--accent-deep);
-    color: var(--ivory);
-  }
+    .eyebrow::before {
+      width: 26px;
+      height: 1px;
+      content: "";
+      background: var(--rose-500);
+    }
 
-  .btn-copy{
-    background: transparent;
-    color: var(--accent-deep);
-    border: 1.5px solid var(--surface-2);
-    padding: 8px 14px;
-  }
+    .brand-title {
+      max-width: 420px;
+      margin: 0;
+      color: var(--cream-50);
+      font-family: Fraunces, serif;
+      font-size: clamp(3.35rem, 6vw, 5.4rem);
+      font-weight: 500;
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+    }
 
-  .icon-btn{
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    color: var(--ink-soft);
-    display: inline-flex;
-    border-radius: 8px;
-    opacity: 0.65;
-    transition: opacity 0.12s ease, background 0.12s ease;
-  }
-  .icon-btn:hover{ opacity: 1; background: rgba(0,0,0,0.05); }
-  .icon-btn svg{ width: 16px; height: 16px; }
+    .brand-title em {
+      color: var(--rose-300);
+      font-style: italic;
+    }
 
-  .link-panel{
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.28s ease;
-    background: var(--surface-2);
-  }
-  .link-panel.open{ max-height: 120px; }
+    .brand-copy {
+      max-width: 335px;
+      margin: 28px 0 0;
+      color: rgba(245, 237, 231, 0.62);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
 
-  .link-panel-inner{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 14px 14px 18px;
-  }
+    .brand-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 70px;
+    }
 
-  .link-url{
-    flex: 1;
-    min-width: 0;
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.82rem;
-    color: var(--ink-soft);
-    background: var(--surface);
-    border-radius: var(--radius-sm);
-    padding: 9px 12px;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border: 1px solid rgba(245, 237, 231, 0.14);
+      border-radius: 999px;
+      color: rgba(245, 237, 231, 0.68);
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
 
-  .copy-now{
-    flex-shrink: 0;
-    background: var(--accent);
-    color: var(--surface);
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 9px 14px;
-    font-size: 0.82rem;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .copy-now.copied{ background: var(--sage); }
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage-500);
+      box-shadow: 0 0 0 4px rgba(127, 154, 122, 0.13);
+    }
 
-  .edit-row{
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    padding: 14px 18px 16px;
-    background: var(--surface-2);
-  }
-  .edit-row.open{ display: flex; }
+    .links-column {
+      width: 100%;
+    }
 
-  .field{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .field label{
-    font-size: 0.74rem;
-    color: var(--ink-soft);
-    letter-spacing: 0.02em;
-  }
-  .field input{
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.92rem;
-    padding: 10px 12px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid rgba(122, 46, 61, 0.18);
-    background: var(--surface);
-    color: var(--ink);
-    outline: none;
-  }
-  .field input:focus{ border-color: var(--accent); }
+    .links-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
 
-  .edit-actions{
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-top: 2px;
-  }
+    .links-heading h2 {
+      margin: 0;
+      color: var(--cream-50);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
 
-  .btn-text{
-    background: none;
-    border: none;
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.84rem;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 999px;
-  }
-  .btn-cancel{ color: var(--ink-soft); }
-  .btn-delete{ color: var(--danger); margin-right: auto; }
-  .btn-save{ background: var(--accent-deep); color: var(--ivory); }
+    .links-count {
+      color: rgba(245, 237, 231, 0.47);
+      font-size: 0.78rem;
+    }
 
-  .add-section{
-    margin-top: 22px;
-  }
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-  .add-btn{
-    width: 100%;
-    background: transparent;
-    border: 1.5px dashed rgba(245, 237, 231, 0.35);
-    color: var(--ivory-soft);
-    border-radius: var(--radius);
-    padding: 16px;
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.94rem;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: border-color 0.15s ease, color 0.15s ease;
-  }
-  .add-btn:hover{ border-color: var(--accent); color: var(--ivory); }
+    .link-card {
+      overflow: hidden;
+      border: 1px solid var(--line-light);
+      border-radius: 20px;
+      color: var(--ink-900);
+      background: var(--cream-50);
+      box-shadow: var(--shadow-card);
+      animation: rise-in 480ms var(--ease-out) both;
+      animation-delay: calc(var(--index) * 55ms);
+      transition:
+        transform 180ms var(--ease-out),
+        box-shadow 180ms var(--ease-out);
+    }
 
-  .add-form{
-    display: none;
-    flex-direction: column;
-    gap: 12px;
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 18px;
-    box-shadow: var(--shadow);
-  }
-  .add-form.open{ display: flex; }
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 24px 55px rgba(19, 8, 13, 0.26),
+        0 3px 10px rgba(19, 8, 13, 0.09);
+    }
 
-  .empty-state{
-    text-align: center;
-    padding: 40px 12px;
-    color: var(--ivory-soft);
-    font-size: 0.92rem;
-  }
+    .link-main {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 76px;
+      padding: 14px 14px 14px 18px;
+    }
 
-  footer{
-    max-width: 480px;
-    margin: 34px auto 0;
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-  }
-  footer button{
-    background: none;
-    border: none;
-    color: var(--ivory-soft);
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.8rem;
-    cursor: pointer;
-    padding: 6px 4px;
-    opacity: 0.75;
-  }
-  footer button:hover{ opacity: 1; }
+    .link-index {
+      display: grid;
+      place-items: center;
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      color: var(--plum-700);
+      background: var(--cream-200);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
 
-  #toast{
-    position: fixed;
-    left: 50%;
-    bottom: 26px;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--surface);
-    color: var(--ink);
-    padding: 12px 20px;
-    border-radius: 999px;
-    font-size: 0.86rem;
-    font-weight: 500;
-    box-shadow: var(--shadow);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 50;
-  }
-  #toast.show{
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+    .link-info {
+      flex: 1;
+      min-width: 0;
+    }
 
-  input[type="file"]{ display: none; }
+    .link-name {
+      overflow: hidden;
+      margin: 0;
+      color: var(--ink-900);
+      font-family: Fraunces, serif;
+      font-size: 1.13rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-  @media (prefers-reduced-motion: reduce){
-    *{ transition: none !important; }
-  }
-</style>
+    .link-host {
+      overflow: hidden;
+      margin: 4px 0 0;
+      color: var(--ink-600);
+      font-size: 0.72rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .link-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .action-button,
+    .open-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 38px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition:
+        transform 140ms var(--ease-out),
+        background 160ms ease,
+        color 160ms ease,
+        border-color 160ms ease;
+    }
+
+    .action-button:active,
+    .open-button:active,
+    .add-button:active,
+    .text-button:active {
+      transform: scale(0.96);
+    }
+
+    .action-button {
+      width: 38px;
+      border: 1px solid transparent;
+      color: var(--ink-600);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .action-button:hover {
+      color: var(--plum-700);
+      background: var(--cream-100);
+    }
+
+    .action-button.is-copy {
+      width: auto;
+      padding: 0 13px;
+      border-color: var(--cream-200);
+      color: var(--plum-700);
+    }
+
+    .action-button.is-copy:hover {
+      border-color: var(--rose-300);
+      background: #fff5f1;
+    }
+
+    .open-button {
+      padding: 0 16px;
+      border: 1px solid var(--plum-700);
+      color: var(--cream-50);
+      background: var(--plum-700);
+    }
+
+    .open-button:hover {
+      border-color: var(--plum-800);
+      background: var(--plum-800);
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .copy-panel,
+    .edit-panel {
+      background: var(--cream-100);
+    }
+
+    .copy-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 18px 15px;
+      border-top: 1px solid rgba(42, 22, 32, 0.06);
+    }
+
+    .url-display {
+      overflow: auto;
+      min-width: 0;
+      padding: 10px 12px;
+      border: 1px solid rgba(42, 22, 32, 0.08);
+      border-radius: 10px;
+      color: var(--ink-600);
+      background: var(--cream-50);
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    .copy-now {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 13px;
+      border: 0;
+      border-radius: 10px;
+      color: var(--cream-50);
+      background: var(--rose-500);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        background 160ms ease,
+        transform 140ms var(--ease-out);
+    }
+
+    .copy-now:hover {
+      background: var(--plum-700);
+    }
+
+    .copy-now.is-copied {
+      background: var(--sage-500);
+    }
+
+    .edit-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px 18px 18px;
+      border-top: 1px solid rgba(42, 22, 32, 0.06);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 10px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      color: var(--ink-600);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 42px;
+      padding: 0 12px;
+      border: 1px solid rgba(42, 22, 32, 0.14);
+      border-radius: 10px;
+      color: var(--ink-900);
+      background: var(--cream-50);
+      font-size: 0.82rem;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: var(--rose-500);
+      box-shadow: 0 0 0 3px rgba(196, 112, 125, 0.14);
+    }
+
+    .edit-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .text-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 11px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--ink-600);
+      background: transparent;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .text-button:hover {
+      background: rgba(42, 22, 32, 0.06);
+    }
+
+    .text-button.delete {
+      margin-right: auto;
+      color: #a14d46;
+    }
+
+    .text-button.save {
+      color: var(--cream-50);
+      background: var(--plum-700);
+    }
+
+    .add-area {
+      margin-top: 18px;
+    }
+
+    .add-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 58px;
+      padding: 14px;
+      border: 1px dashed rgba(245, 237, 231, 0.32);
+      border-radius: 18px;
+      color: rgba(245, 237, 231, 0.72);
+      background: rgba(255, 255, 255, 0.035);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        border-color 160ms ease,
+        color 160ms ease,
+        background 160ms ease,
+        transform 140ms var(--ease-out);
+    }
+
+    .add-button:hover {
+      border-color: var(--rose-300);
+      color: var(--cream-50);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .add-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 20px;
+      border: 1px solid rgba(245, 237, 231, 0.15);
+      border-radius: 20px;
+      background: rgba(255, 250, 246, 0.96);
+      box-shadow: var(--shadow-card);
+      animation: form-in 230ms var(--ease-out) both;
+    }
+
+    .add-form .form-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 0 2px;
+      color: var(--ink-900);
+      font-family: Fraunces, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .form-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 50%;
+      color: var(--ink-600);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .form-close:hover {
+      background: var(--cream-200);
+    }
+
+    .empty-state {
+      padding: 42px 20px;
+      border: 1px dashed rgba(245, 237, 231, 0.23);
+      border-radius: 20px;
+      color: rgba(245, 237, 231, 0.68);
+      text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .utility-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .utility-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      border: 0;
+      color: rgba(245, 237, 231, 0.5);
+      background: transparent;
+      font-size: 0.74rem;
+      cursor: pointer;
+      transition: color 160ms ease;
+    }
+
+    .utility-button:hover {
+      color: var(--cream-50);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 30;
+      bottom: 28px;
+      left: 50%;
+      padding: 12px 18px;
+      border: 1px solid rgba(42, 22, 32, 0.1);
+      border-radius: 999px;
+      color: var(--ink-900);
+      background: var(--cream-50);
+      box-shadow: var(--shadow-card);
+      font-size: 0.8rem;
+      font-weight: 700;
+      pointer-events: none;
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      transition:
+        opacity 180ms ease,
+        transform 180ms var(--ease-out);
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes form-in {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 880px) {
+      .page-frame {
+        grid-template-columns: 1fr;
+        gap: 52px;
+        width: min(680px, calc(100% - 40px));
+        padding-top: 56px;
+      }
+
+      .brand-column {
+        min-height: auto;
+      }
+
+      .brand-footer {
+        margin-top: 38px;
+        padding-top: 0;
+      }
+
+      .brand-title {
+        max-width: 520px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-frame {
+        width: calc(100% - 28px);
+        gap: 38px;
+        padding: 38px 0 42px;
+      }
+
+      .brand-mark {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 24px;
+      }
+
+      .brand-title {
+        font-size: clamp(3rem, 16vw, 4.2rem);
+      }
+
+      .brand-copy {
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+
+      .brand-footer {
+        margin-top: 28px;
+      }
+
+      .link-main {
+        gap: 10px;
+        min-height: 70px;
+        padding: 11px 10px 11px 12px;
+      }
+
+      .link-index {
+        flex-basis: 29px;
+        width: 29px;
+        height: 29px;
+        border-radius: 9px;
+        font-size: 0.68rem;
+      }
+
+      .link-name {
+        font-size: 1rem;
+      }
+
+      .link-host {
+        font-size: 0.66rem;
+      }
+
+      .link-actions {
+        gap: 3px;
+      }
+
+      .action-button {
+        width: 32px;
+        min-height: 34px;
+      }
+
+      .action-button.is-copy {
+        width: 34px;
+        padding: 0;
+        font-size: 0;
+      }
+
+      .action-button.is-copy .icon {
+        width: 15px;
+      }
+
+      .open-button {
+        min-height: 34px;
+        padding: 0 11px;
+        font-size: 0.7rem;
+      }
+
+      .open-button .icon {
+        width: 14px;
+      }
+
+      .copy-panel {
+        grid-template-columns: 1fr;
+        padding: 12px;
+      }
+
+      .copy-now {
+        justify-content: center;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .utility-row {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-top: 22px;
+        gap: 12px 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-<div class="wrap">
-  <header>
-    <svg class="mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="46" r="24" stroke="#f5ede7" stroke-width="8"/>
-      <circle cx="60" cy="58" r="24" stroke="#c4707d" stroke-width="8"/>
-    </svg>
-    <h1>Central de Links</h1>
-    <p>Lash Laís Martins</p>
-  </header>
-
-  <div class="list" id="list"></div>
-
-  <div class="add-section">
-    <button class="add-btn" id="showAddBtn" type="button">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      Adicionar link
-    </button>
-
-    <form class="add-form" id="addForm">
-      <div class="field">
-        <label for="newName">Nome</label>
-        <input type="text" id="newName" placeholder="Ex.: Catálogo de Sobrancelhas" required>
-      </div>
-      <div class="field">
-        <label for="newUrl">Link</label>
-        <input type="url" id="newUrl" placeholder="https://..." required>
-      </div>
-      <div class="edit-actions">
-        <button type="button" class="btn-text btn-cancel" id="cancelAddBtn">Cancelar</button>
-        <button type="submit" class="btn-text btn-save">Salvar link</button>
-      </div>
-    </form>
-  </div>
-
-  <footer>
-    <button id="exportBtn" type="button">Exportar backup</button>
-    <button id="importBtn" type="button">Importar backup</button>
-    <input type="file" id="importFile" accept="application/json">
-  </footer>
-</div>
-
-<div id="toast"></div>
-
-<script>
-(function(){
-  const STORAGE_KEY = "central-links-dados";
-
-  const defaultLinks = [
-    { id: "laserday", name: "Laser Day", url: "https://alaismartins.github.io/laserday/" },
-    { id: "catalogo-laser", name: "Catálogo Laser", url: "https://alaismartins.github.io/thebeautyspace/" },
-    { id: "catalogo-cilios", name: "Catálogo Cílios", url: "https://alaismartins.github.io/alaismartins/" },
-    { id: "controle-financeiro", name: "Controle Financeiro", url: "https://alaismartins.github.io/app-controle-financeiro-lais-martins/" },
-    { id: "app-laserday", name: "App Laser Day", url: "https://alaismartins.github.io/app-laserday/" },
-    { id: "catalogo-noivas", name: "Catálogo para Noivas", url: "https://alaismartins.github.io/catalogoparanoivas/" }
-  ];
-
-  function loadLinks(){
-    try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(!raw) return defaultLinks.slice();
-      const parsed = JSON.parse(raw);
-      if(Array.isArray(parsed) && parsed.length) return parsed;
-      return defaultLinks.slice();
-    }catch(e){
-      return defaultLinks.slice();
-    }
-  }
-
-  function saveLinks(links){
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
-  }
-
-  let links = loadLinks();
-  let openPanelId = null;
-  let openEditId = null;
-
-  const listEl = document.getElementById("list");
-
-  function uid(){
-    return "id-" + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
-  }
-
-  function escapeHtml(str){
-    const div = document.createElement("div");
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  function render(){
-    listEl.innerHTML = "";
-
-    if(links.length === 0){
-      const empty = document.createElement("div");
-      empty.className = "empty-state";
-      empty.textContent = "Nenhum link ainda. Toque em \"Adicionar link\" para começar.";
-      listEl.appendChild(empty);
-      return;
-    }
-
-    links.forEach(link => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.dataset.id = link.id;
-
-      card.innerHTML = `
-        <div class="card-main">
-          <div class="card-name">${escapeHtml(link.name)}</div>
-          <div class="card-actions">
-            <button class="icon-btn edit-toggle" title="Editar" type="button">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-            </button>
-            <button class="btn btn-copy copy-toggle" type="button">Copiar</button>
-            <a class="btn btn-open" href="${escapeHtml(link.url)}" target="_blank" rel="noopener">Abrir</a>
+  <main class="site-shell">
+    <div class="page-frame">
+      <section class="brand-column" aria-labelledby="page-title">
+        <div>
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="46" r="24" stroke="#F5EDE7" stroke-width="8"/>
+              <circle cx="60" cy="58" r="24" stroke="#C4707D" stroke-width="8"/>
+            </svg>
           </div>
+
+          <p class="eyebrow">Lash Laís Martins</p>
+
+          <h1 class="brand-title" id="page-title">
+            Tudo o que você precisa,
+            <em>em um só lugar.</em>
+          </h1>
+
+          <p class="brand-copy">
+            Uma curadoria dos meus catálogos, ferramentas e experiências digitais para você acessar com leveza.
+          </p>
         </div>
-        <div class="link-panel" id="panel-${link.id}">
-          <div class="link-panel-inner">
-            <div class="link-url">${escapeHtml(link.url)}</div>
-            <button class="copy-now" type="button">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.8"/></svg>
-              <span>Copiar</span>
-            </button>
-          </div>
+
+        <div class="brand-footer">
+          <span class="pill">
+            <span class="pill-dot"></span>
+            Central ativa
+          </span>
+
+          <span class="pill">
+            Seus dados ficam neste dispositivo
+          </span>
         </div>
-        <div class="edit-row" id="edit-${link.id}">
-          <div class="field">
-            <label>Nome</label>
-            <input type="text" class="edit-name" value="${escapeHtml(link.name)}">
-          </div>
-          <div class="field">
-            <label>Link</label>
-            <input type="url" class="edit-url" value="${escapeHtml(link.url)}">
-          </div>
-          <div class="edit-actions">
-            <button type="button" class="btn-text btn-delete">Excluir</button>
-            <button type="button" class="btn-text btn-cancel">Cancelar</button>
-            <button type="button" class="btn-text btn-save">Salvar</button>
-          </div>
+      </section>
+
+      <section class="links-column" aria-labelledby="links-title">
+        <div class="links-heading">
+          <h2 id="links-title">Explore os links</h2>
+          <span class="links-count" id="linksCount"></span>
         </div>
-      `;
 
-      listEl.appendChild(card);
-    });
+        <div class="link-list" id="linkList"></div>
 
-    attachCardEvents();
-  }
+        <div class="add-area">
+          <button class="add-button" id="showAddButton" type="button">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Adicionar novo link
+          </button>
 
-  function closeAllPanels(){
-    document.querySelectorAll(".link-panel.open").forEach(p => p.classList.remove("open"));
-    openPanelId = null;
-  }
+          <form class="add-form" id="addForm" hidden>
+            <div class="form-title">
+              Novo acesso
 
-  function closeAllEdits(){
-    document.querySelectorAll(".edit-row.open").forEach(e => e.classList.remove("open"));
-    openEditId = null;
-  }
+              <button class="form-close" id="closeAddButton" type="button" aria-label="Fechar formulário">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
 
-  function attachCardEvents(){
-    document.querySelectorAll(".card").forEach(card => {
-      const id = card.dataset.id;
-      const link = links.find(l => l.id === id);
+            <div class="form-grid">
+              <div class="field">
+                <label for="newName">Nome</label>
+                <input
+                  id="newName"
+                  type="text"
+                  placeholder="Ex.: Catálogo de Sobrancelhas"
+                  required
+                >
+              </div>
 
-      card.querySelector(".copy-toggle").addEventListener("click", () => {
-        const panel = card.querySelector(".link-panel");
-        const isOpen = panel.classList.contains("open");
-        closeAllPanels();
-        closeAllEdits();
-        if(!isOpen){
-          panel.classList.add("open");
-          openPanelId = id;
+              <div class="field">
+                <label for="newUrl">Link</label>
+                <input
+                  id="newUrl"
+                  type="url"
+                  placeholder="https://..."
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="edit-actions">
+              <button class="text-button" id="cancelAddButton" type="button">
+                Cancelar
+              </button>
+
+              <button class="text-button save" type="submit">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Adicionar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="utility-row">
+          <button class="utility-button" id="exportButton" type="button">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3V15M12 15L8 11M12 15L16 11M5 19H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Exportar backup
+          </button>
+
+          <button class="utility-button" id="importButton" type="button">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 15V3M12 3L8 7M12 3L16 7M5 19H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Importar backup
+          </button>
+
+          <input id="importFile" type="file" accept="application/json">
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script>
+    (function ( ) {
+      const STORAGE_KEY = "central-links-dados";
+
+      const defaultLinks = [
+        {
+          id: "laserday",
+          name: "Laser Day",
+          url: "https://alaismartins.github.io/laserday/"
+        },
+        {
+          id: "catalogo-laser",
+          name: "Catálogo Laser",
+          url: "https://alaismartins.github.io/thebeautyspace/"
+        },
+        {
+          id: "catalogo-cilios",
+          name: "Catálogo Cílios",
+          url: "https://alaismartins.github.io/alaismartins/"
+        },
+        {
+          id: "controle-financeiro",
+          name: "Controle Financeiro",
+          url: "https://alaismartins.github.io/app-controle-financeiro-lais-martins/"
+        },
+        {
+          id: "app-laserday",
+          name: "App Laser Day",
+          url: "https://alaismartins.github.io/app-laserday/"
+        },
+        {
+          id: "catalogo-noivas",
+          name: "Catálogo para Noivas",
+          url: "https://alaismartins.github.io/catalogoparanoivas/"
         }
-      });
+      ];
 
-      card.querySelector(".copy-now").addEventListener("click", (e) => {
-        copyText(link.url, e.currentTarget);
-      });
+      let links = loadLinks( );
+      let toastTimer = null;
 
-      card.querySelector(".edit-toggle").addEventListener("click", () => {
-        const editRow = card.querySelector(".edit-row");
-        const isOpen = editRow.classList.contains("open");
-        closeAllEdits();
-        closeAllPanels();
-        if(!isOpen){
-          editRow.classList.add("open");
-          openEditId = id;
+      const linkList = document.getElementById("linkList");
+      const linksCount = document.getElementById("linksCount");
+      const toast = document.getElementById("toast");
+
+      const addForm = document.getElementById("addForm");
+      const showAddButton = document.getElementById("showAddButton");
+      const closeAddButton = document.getElementById("closeAddButton");
+      const cancelAddButton = document.getElementById("cancelAddButton");
+
+      const newName = document.getElementById("newName");
+      const newUrl = document.getElementById("newUrl");
+
+      const exportButton = document.getElementById("exportButton");
+      const importButton = document.getElementById("importButton");
+      const importFile = document.getElementById("importFile");
+
+      function loadLinks() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+          if (Array.isArray(saved)) {
+            return saved.filter(item => item && item.name && item.url);
+          }
+        } catch (error) {
+          console.warn("Não foi possível carregar os links salvos.");
         }
+
+        return [...defaultLinks];
+      }
+
+      function saveLinks() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+      }
+
+      function createId() {
+        return "id-" + Date.now().toString(36) + "-" +
+          Math.random().toString(36).slice(2, 8);
+      }
+
+      function getHost(url) {
+        try {
+          return new URL(url).hostname.replace(/^www\./, "");
+        } catch {
+          return url;
+        }
+      }
+
+      function escapeHTML(value) {
+        const div = document.createElement("div");
+        div.textContent = value;
+        return div.innerHTML;
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+          toast.classList.remove("show");
+        }, 1900);
+      }
+
+      function render() {
+        linksCount.textContent =
+          links.length + (links.length === 1 ? " item" : " itens");
+
+        if (!links.length) {
+          linkList.innerHTML = `
+            <div class="empty-state">
+              Sua central está pronta para receber o primeiro link.  
+
+              Comece adicionando um novo acesso abaixo.
+            </div>
+          `;
+
+          return;
+        }
+
+        linkList.innerHTML = links.map((link, index) => `
+          <article class="link-card" style="--index: ${index}" data-id="${escapeHTML(link.id)}">
+            <div class="link-main">
+              <div class="link-index">${String(index + 1).padStart(2, "0")}</div>
+
+              <div class="link-info">
+                <h3 class="link-name" title="${escapeHTML(link.name)}">
+                  ${escapeHTML(link.name)}
+                </h3>
+
+                <p class="link-host">
+                  ${escapeHTML(getHost(link.url))}
+                </p>
+              </div>
+
+              <div class="link-actions">
+                <button
+                  class="action-button edit-button"
+                  type="button"
+                  title="Editar"
+                  aria-label="Editar ${escapeHTML(link.name)}"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 20H8L19 9C20.1 7.9 20.1 6.1 19 5C17.9 3.9 16.1 3.9 15 5L4 16V20Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+
+                <button class="action-button is-copy copy-button" type="button">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M16 8V6C16 4.9 15.1 4 14 4H6C4.9 4 4 4.9 4 6V14C4 15.1 4.9 16 6 16H8" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                  <span>Copiar</span>
+                </button>
+
+                <a
+                  class="open-button"
+                  href="${escapeHTML(link.url)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Abrir
+
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M14 5H19V10M19 5L11 13M19 14V18C19 19.1 18.1 20 17 20H6C4.9 20 4 19.1 4 18V7C4 5.9 4.9 5 6 5H10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="copy-panel" hidden>
+              <div class="url-display" title="${escapeHTML(link.url)}">
+                ${escapeHTML(link.url)}
+              </div>
+
+              <button class="copy-now" type="button">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <rect x="8" y="8" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M16 8V6C16 4.9 15.1 4 14 4H6C4.9 4 4 4.9 4 6V14C4 15.1 4.9 16 6 16H8" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                Copiar link
+              </button>
+            </div>
+
+            <div class="edit-panel" hidden>
+              <div class="form-grid">
+                <div class="field">
+                  <label>Nome</label>
+                  <input class="edit-name" type="text" value="${escapeHTML(link.name)}">
+                </div>
+
+                <div class="field">
+                  <label>Link</label>
+                  <input class="edit-url" type="url" value="${escapeHTML(link.url)}">
+                </div>
+              </div>
+
+              <div class="edit-actions">
+                <button class="text-button delete-button" type="button">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7H20M10 11V17M14 11V17M6 7L7 20H17L18 7M9 7V4H15V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Excluir
+                </button>
+
+                <button class="text-button cancel-edit-button" type="button">
+                  Cancelar
+                </button>
+
+                <button class="text-button save save-edit-button" type="button">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 4H16L19 7V20H5V4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                    <path d="M8 4V10H16V4M8 16H16" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                  Salvar
+                </button>
+              </div>
+            </div>
+          </article>
+        `).join("");
+
+        attachEvents();
+      }
+
+      function attachEvents() {
+        document.querySelectorAll(".link-card").forEach(card => {
+          const id = card.dataset.id;
+          const link = links.find(item => item.id === id);
+
+          const copyButton = card.querySelector(".copy-button");
+          const copyPanel = card.querySelector(".copy-panel");
+          const copyNow = card.querySelector(".copy-now");
+
+          const editButton = card.querySelector(".edit-button");
+          const editPanel = card.querySelector(".edit-panel");
+
+          const cancelEditButton = card.querySelector(".cancel-edit-button");
+          const saveEditButton = card.querySelector(".save-edit-button");
+          const deleteButton = card.querySelector(".delete-button");
+
+          copyButton.addEventListener("click", () => {
+            const shouldOpen = copyPanel.hidden;
+
+            closeAllPanels();
+
+            if (shouldOpen) {
+              copyPanel.hidden = false;
+            }
+          });
+
+          copyNow.addEventListener("click", () => {
+            copyText(link.url, copyNow);
+          });
+
+          editButton.addEventListener("click", () => {
+            const shouldOpen = editPanel.hidden;
+
+            closeAllPanels();
+
+            if (shouldOpen) {
+              editPanel.hidden = false;
+            }
+          });
+
+          cancelEditButton.addEventListener("click", () => {
+            editPanel.hidden = true;
+          });
+
+          saveEditButton.addEventListener("click", () => {
+            const name = card.querySelector(".edit-name").value.trim();
+            const url = card.querySelector(".edit-url").value.trim();
+
+            if (!name || !url) {
+              showToast("Preencha nome e link.");
+              return;
+            }
+
+            link.name = name;
+            link.url = url;
+
+            saveLinks();
+            render();
+            showToast("Link atualizado.");
+          });
+
+          deleteButton.addEventListener("click", () => {
+            if (!confirm(`Excluir "${link.name}"?`)) return;
+
+            links = links.filter(item => item.id !== id);
+            saveLinks();
+            render();
+            showToast("Link excluído.");
+          });
+        });
+      }
+
+      function closeAllPanels() {
+        document.querySelectorAll(".copy-panel, .edit-panel").forEach(panel => {
+          panel.hidden = true;
+        });
+      }
+
+      async function copyText(text, button) {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            fallbackCopy(text);
+          }
+        } catch {
+          fallbackCopy(text);
+        }
+
+        const original = button.innerHTML;
+
+        button.classList.add("is-copied");
+        button.innerHTML = `
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12L10 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Copiado
+        `;
+
+        showToast("Link copiado para a área de transferência.");
+
+        setTimeout(() => {
+          button.classList.remove("is-copied");
+          button.innerHTML = original;
+        }, 1400);
+      }
+
+      function fallbackCopy(text) {
+        const textArea = document.createElement("textarea");
+
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+
+        document.body.appendChild(textArea);
+        textArea.select();
+
+        try {
+          document.execCommand("copy");
+        } catch {}
+
+        document.body.removeChild(textArea);
+      }
+
+      showAddButton.addEventListener("click", () => {
+        addForm.hidden = false;
+        showAddButton.hidden = true;
+        newName.focus();
       });
 
-      const editRow = card.querySelector(".edit-row");
-      editRow.querySelector(".btn-cancel").addEventListener("click", () => {
-        editRow.classList.remove("open");
-        openEditId = null;
-      });
+      function closeAddForm() {
+        addForm.reset();
+        addForm.hidden = true;
+        showAddButton.hidden = false;
+      }
 
-      editRow.querySelector(".btn-save").addEventListener("click", () => {
-        const newName = editRow.querySelector(".edit-name").value.trim();
-        const newUrl = editRow.querySelector(".edit-url").value.trim();
-        if(!newName || !newUrl){
+      closeAddButton.addEventListener("click", closeAddForm);
+      cancelAddButton.addEventListener("click", closeAddForm);
+
+      addForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const name = newName.value.trim();
+        const url = newUrl.value.trim();
+
+        if (!name || !url) {
           showToast("Preencha nome e link.");
           return;
         }
-        link.name = newName;
-        link.url = newUrl;
-        saveLinks(links);
+
+        links.push({
+          id: createId(),
+          name,
+          url
+        });
+
+        saveLinks();
+        closeAddForm();
         render();
-        showToast("Link atualizado.");
+        showToast("Link adicionado à sua central.");
       });
 
-      editRow.querySelector(".btn-delete").addEventListener("click", () => {
-        if(confirm(`Excluir "${link.name}"?`)){
-          links = links.filter(l => l.id !== id);
-          saveLinks(links);
-          render();
-          showToast("Link excluído.");
-        }
-      });
-    });
-  }
+      exportButton.addEventListener("click", () => {
+        const blob = new Blob(
+          [JSON.stringify(links, null, 2)],
+          { type: "application/json" }
+        );
 
-  function copyText(text, btnEl){
-    const done = () => {
-      if(btnEl){
-        const original = btnEl.querySelector("span") ? btnEl.querySelector("span").textContent : btnEl.textContent;
-        btnEl.classList.add("copied");
-        if(btnEl.querySelector("span")){
-          btnEl.querySelector("span").textContent = "Copiado!";
-        }
-        setTimeout(() => {
-          btnEl.classList.remove("copied");
-          if(btnEl.querySelector("span")){
-            btnEl.querySelector("span").textContent = original;
+        const downloadUrl = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+
+        anchor.href = downloadUrl;
+        anchor.download = "central-de-links-backup.json";
+        anchor.click();
+
+        URL.revokeObjectURL(downloadUrl);
+        showToast("Backup exportado.");
+      });
+
+      importButton.addEventListener("click", () => {
+        importFile.click();
+      });
+
+      importFile.addEventListener("change", event => {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          try {
+            const imported = JSON.parse(reader.result);
+
+            if (!Array.isArray(imported)) {
+              throw new Error("Formato inválido");
+            }
+
+            links = imported
+              .filter(item => item && item.name && item.url)
+              .map(item => ({
+                id: item.id || createId(),
+                name: String(item.name),
+                url: String(item.url)
+              }));
+
+            saveLinks();
+            render();
+            showToast("Backup importado com sucesso.");
+          } catch {
+            showToast("Arquivo de backup inválido.");
           }
-        }, 1400);
-      }
-      showToast("Link copiado.");
-    };
+        };
 
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
-    }else{
-      fallbackCopy(text, done);
-    }
-  }
+        reader.readAsText(file);
+        importFile.value = "";
+      });
 
-  function fallbackCopy(text, cb){
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand("copy"); }catch(e){}
-    document.body.removeChild(ta);
-    if(cb) cb();
-  }
-
-  let toastTimer = null;
-  function showToast(msg){
-    const toast = document.getElementById("toast");
-    toast.textContent = msg;
-    toast.classList.add("show");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
-  }
-
-  // Add form
-  const showAddBtn = document.getElementById("showAddBtn");
-  const addForm = document.getElementById("addForm");
-  const cancelAddBtn = document.getElementById("cancelAddBtn");
-
-  showAddBtn.addEventListener("click", () => {
-    addForm.classList.add("open");
-    showAddBtn.style.display = "none";
-    document.getElementById("newName").focus();
-  });
-
-  cancelAddBtn.addEventListener("click", () => {
-    addForm.classList.remove("open");
-    showAddBtn.style.display = "flex";
-    addForm.reset();
-  });
-
-  addForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = document.getElementById("newName").value.trim();
-    const url = document.getElementById("newUrl").value.trim();
-    if(!name || !url) return;
-    links.push({ id: uid(), name, url });
-    saveLinks(links);
-    addForm.reset();
-    addForm.classList.remove("open");
-    showAddBtn.style.display = "flex";
-    render();
-    showToast("Link adicionado.");
-  });
-
-  // Export / Import
-  document.getElementById("exportBtn").addEventListener("click", () => {
-    const blob = new Blob([JSON.stringify(links, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "central-de-links-backup.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  });
-
-  const importFile = document.getElementById("importFile");
-  document.getElementById("importBtn").addEventListener("click", () => importFile.click());
-
-  importFile.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if(!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      try{
-        const data = JSON.parse(ev.target.result);
-        if(!Array.isArray(data)) throw new Error("formato inválido");
-        const cleaned = data.filter(item => item && item.name && item.url)
-          .map(item => ({ id: item.id || uid(), name: String(item.name), url: String(item.url) }));
-        links = cleaned;
-        saveLinks(links);
-        render();
-        showToast("Backup importado.");
-      }catch(err){
-        showToast("Arquivo inválido.");
-      }
-    };
-    reader.readAsText(file);
-    importFile.value = "";
-  });
-
-  render();
-
-  if("serviceWorker" in navigator){
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js").catch(() => {});
-    });
-  }
-})();
-</script>
-
+      render();
+    })();
+  </script>
 </body>
 </html>
