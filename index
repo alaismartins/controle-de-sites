@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meus Sites</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f8f8, #ececec);
+            color: #222;
+            padding: 30px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .sites {
+            display: grid;
+            gap: 18px;
+        }
+
+        .site-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .site-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .site-nome {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .botao {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .botao:hover {
+            opacity: 0.85;
+            transform: scale(1.02);
+        }
+
+        .acessar {
+            background: #222;
+            color: white;
+        }
+
+        .copiar {
+            background: #e9e9e9;
+            color: #222;
+        }
+
+        .link-area {
+            display: none;
+            margin-top: 15px;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .link-area.ativo {
+            display: flex;
+        }
+
+        .link-input {
+            flex: 1;
+            min-width: 0;
+            padding: 11px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: #f8f8f8;
+        }
+
+        .mensagem {
+            margin-top: 10px;
+            color: #16803c;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .mensagem.ativo {
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .site-card {
+                padding: 18px;
+            }
+
+            .botao {
+                width: 100%;
+            }
+
+            .link-area {
+                flex-direction: column;
+            }
+
+            .link-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header>
+            <!-- ALTERE AQUI O NOME DO SEU SITE -->
+            <h1>Meus Sites</h1>
+
+            <p class="subtitulo">
+                Acesse ou copie rapidamente os links disponíveis.
+            </p>
+        </header>
+
+        <section class="sites" id="listaSites"></section>
+
+        <footer>
+            © <span id="ano"></span> - Meus Sites
+        </footer>
+
+    </main>
+
+
+    <script>
+        /*
+        ==========================================
+        ADICIONE, REMOVA OU EDITE SEUS SITES AQUI
+        ==========================================
+
+        Para adicionar um novo site, copie este modelo:
+
+        {
+            nome: "Nome do novo site",
+            link: "https://seu-link-aqui.com/"
+        },
+
+        e coloque dentro da lista abaixo.
+        */
+
+        const sites = [
+            {
+                nome: "Laser Day",
+                link: "https://alaismartins.github.io/laserday/"
+            },
+            {
+                nome: "Catálogo Laser",
+                link: "https://alaismartins.github.io/thebeautyspace/"
+            },
+            {
+                nome: "Catálogo Cílios",
+                link: "https://alaismartins.github.io/alaismartins/"
+            },
+            {
+                nome: "Controle Financeiro",
+                link: "https://alaismartins.github.io/app-controle-financeiro-lais-martins/"
+            },
+            {
+                nome: "App Laser Day",
+                link: "https://alaismartins.github.io/app-laserday/"
+            },
+            {
+                nome: "Catálogo para noivas",
+                link: "https://alaismartins.github.io/catalogoparanoivas/"
+            }
+        ];
+
+
+        const listaSites = document.getElementById("listaSites");
+
+
+        sites.forEach((site, index) => {
+
+            const card = document.createElement("article");
+
+            card.className = "site-card";
+
+            card.innerHTML = `
+                <div class="site-nome">${site.nome}</div>
+
+                <div class="botoes">
+
+                    <a
+                        href="${site.link}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="botao acessar"
+                    >
+                        Acessar site
+                    </a>
+
+                    <button
+                        class="botao copiar"
+                        onclick="mostrarLink(${index})"
+                    >
+                        Copiar link
+                    </button>
+
+                </div>
+
+                <div
+                    class="link-area"
+                    id="link-area-${index}"
+                >
+                    <input
+                        type="text"
+                        class="link-input"
+                        id="link-${index}"
+                        value="${site.link}"
+                        readonly
+                    >
+
+                    <button
+                        class="botao copiar"
+                        onclick="copiarLink(${index})"
+                    >
+                        Copiar
+                    </button>
+                </div>
+
+                <div
+                    class="mensagem"
+                    id="mensagem-${index}"
+                >
+                    ✓ Link copiado com sucesso!
+                </div>
+            `;
+
+            listaSites.appendChild(card);
+
+        });
+
+
+        function mostrarLink(index) {
+
+            const area = document.getElementById(
+                `link-area-${index}`
+            );
+
+            const input = document.getElementById(
+                `link-${index}`
+            );
+
+            const mensagem = document.getElementById(
+                `mensagem-${index}`
+            );
+
+            area.classList.toggle("ativo");
+            mensagem.classList.remove("ativo");
+
+            if (area.classList.contains("ativo")) {
+                input.select();
+            }
+
+        }
+
+
+        async function copiarLink(index) {
+
+            const input = document.getElementById(
+                `link-${index}`
+            );
+
+            const mensagem = document.getElementById(
+                `mensagem-${index}`
+            );
+
+            try {
+
+                await navigator.clipboard.writeText(input.value);
+
+            } catch (erro) {
+
+                input.select();
+                document.execCommand("copy");
+
+            }
+
+            mensagem.classList.add("ativo");
+
+            setTimeout(() => {
+                mensagem.classList.remove("ativo");
+            }, 2500);
+
+        }
+
+
+        document.getElementById("ano").textContent =
+            new Date().getFullYear();
+
+    </script>
+
+</body>
+</html>
