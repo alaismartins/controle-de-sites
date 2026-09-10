@@ -1,359 +1,700 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Central de Links</title>
+<meta name="description" content="Central de links — Lash Laís Martins">
+<meta name="theme-color" content="#211219">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #211219;
+    --bg-2: #2b1a22;
+    --surface: #faf3ee;
+    --surface-2: #f3e8e1;
+    --ink: #2a1620;
+    --ink-soft: #6e5560;
+    --ivory: #f5ede7;
+    --ivory-soft: #cbb9c0;
+    --accent: #c4707d;
+    --accent-deep: #7a2e3d;
+    --sage: #7f9a7a;
+    --danger: #b1584f;
+    --radius: 18px;
+    --radius-sm: 10px;
+    --shadow: 0 12px 30px rgba(19, 8, 13, 0.35);
+  }
 
-    <title>Meus Sites</title>
+  *{ box-sizing: border-box; }
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  html, body{
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: 'Work Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #f8f8f8, #ececec);
-            color: #222;
-            padding: 30px 15px;
-        }
+  body{
+    min-height: 100vh;
+    background:
+      radial-gradient(120% 60% at 50% -10%, rgba(196,112,125,0.16), transparent 60%),
+      var(--bg);
+    display: flex;
+    justify-content: center;
+    padding: 0 0 64px;
+  }
 
-        .container {
-            width: 100%;
-            max-width: 850px;
-            margin: 0 auto;
-        }
+  .wrap{
+    width: 100%;
+    max-width: 480px;
+    padding: 44px 20px 0;
+  }
 
-        header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+  header{
+    text-align: center;
+    margin-bottom: 34px;
+  }
 
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
+  header .mark{
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 18px;
+    display: block;
+  }
 
-        .subtitulo {
-            color: #666;
-            font-size: 1rem;
-        }
+  h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 2rem;
+    letter-spacing: 0.01em;
+    margin: 0 0 6px;
+    color: var(--ivory);
+  }
 
-        .sites {
-            display: grid;
-            gap: 18px;
-        }
+  header p{
+    margin: 0;
+    color: var(--ivory-soft);
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+  }
 
-        .site-card {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 22px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+  .list{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-        .site-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
+  .card{
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+  }
 
-        .site-nome {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 18px;
-        }
+  .card-main{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 14px 16px 18px;
+  }
 
-        .botoes {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+  .card-name{
+    flex: 1;
+    min-width: 0;
+    font-family: 'Fraunces', serif;
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-        .botao {
-            border: none;
-            padding: 12px 18px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: bold;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+  .card-actions{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
 
-        .botao:hover {
-            opacity: 0.85;
-            transform: scale(1.02);
-        }
+  .btn{
+    border: none;
+    cursor: pointer;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.86rem;
+    border-radius: 999px;
+    padding: 9px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.12s ease, opacity 0.12s ease;
+    white-space: nowrap;
+  }
+  .btn:active{ transform: scale(0.96); }
 
-        .acessar {
-            background: #222;
-            color: white;
-        }
+  .btn-open{
+    background: var(--accent-deep);
+    color: var(--ivory);
+  }
 
-        .copiar {
-            background: #e9e9e9;
-            color: #222;
-        }
+  .btn-copy{
+    background: transparent;
+    color: var(--accent-deep);
+    border: 1.5px solid var(--surface-2);
+    padding: 8px 14px;
+  }
 
-        .link-area {
-            display: none;
-            margin-top: 15px;
-            gap: 10px;
-            align-items: center;
-        }
+  .icon-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    color: var(--ink-soft);
+    display: inline-flex;
+    border-radius: 8px;
+    opacity: 0.65;
+    transition: opacity 0.12s ease, background 0.12s ease;
+  }
+  .icon-btn:hover{ opacity: 1; background: rgba(0,0,0,0.05); }
+  .icon-btn svg{ width: 16px; height: 16px; }
 
-        .link-area.ativo {
-            display: flex;
-        }
+  .link-panel{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.28s ease;
+    background: var(--surface-2);
+  }
+  .link-panel.open{ max-height: 120px; }
 
-        .link-input {
-            flex: 1;
-            min-width: 0;
-            padding: 11px 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            background: #f8f8f8;
-        }
+  .link-panel-inner{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 14px 18px;
+  }
 
-        .mensagem {
-            margin-top: 10px;
-            color: #16803c;
-            font-size: 0.9rem;
-            font-weight: bold;
-            display: none;
-        }
+  .link-url{
+    flex: 1;
+    min-width: 0;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    padding: 9px 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 
-        .mensagem.ativo {
-            display: block;
-        }
+  .copy-now{
+    flex-shrink: 0;
+    background: var(--accent);
+    color: var(--surface);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 9px 14px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .copy-now.copied{ background: var(--sage); }
 
-        footer {
-            text-align: center;
-            margin-top: 35px;
-            color: #888;
-            font-size: 0.85rem;
-        }
+  .edit-row{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 18px 16px;
+    background: var(--surface-2);
+  }
+  .edit-row.open{ display: flex; }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8rem;
-            }
+  .field{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .field label{
+    font-size: 0.74rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .field input{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.92rem;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid rgba(122, 46, 61, 0.18);
+    background: var(--surface);
+    color: var(--ink);
+    outline: none;
+  }
+  .field input:focus{ border-color: var(--accent); }
 
-            .site-card {
-                padding: 18px;
-            }
+  .edit-actions{
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 2px;
+  }
 
-            .botao {
-                width: 100%;
-            }
+  .btn-text{
+    background: none;
+    border: none;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 999px;
+  }
+  .btn-cancel{ color: var(--ink-soft); }
+  .btn-delete{ color: var(--danger); margin-right: auto; }
+  .btn-save{ background: var(--accent-deep); color: var(--ivory); }
 
-            .link-area {
-                flex-direction: column;
-            }
+  .add-section{
+    margin-top: 22px;
+  }
 
-            .link-input {
-                width: 100%;
-            }
-        }
-    </style>
+  .add-btn{
+    width: 100%;
+    background: transparent;
+    border: 1.5px dashed rgba(245, 237, 231, 0.35);
+    color: var(--ivory-soft);
+    border-radius: var(--radius);
+    padding: 16px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.94rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .add-btn:hover{ border-color: var(--accent); color: var(--ivory); }
+
+  .add-form{
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+  }
+  .add-form.open{ display: flex; }
+
+  .empty-state{
+    text-align: center;
+    padding: 40px 12px;
+    color: var(--ivory-soft);
+    font-size: 0.92rem;
+  }
+
+  footer{
+    max-width: 480px;
+    margin: 34px auto 0;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+  }
+  footer button{
+    background: none;
+    border: none;
+    color: var(--ivory-soft);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 6px 4px;
+    opacity: 0.75;
+  }
+  footer button:hover{ opacity: 1; }
+
+  #toast{
+    position: fixed;
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--surface);
+    color: var(--ink);
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-size: 0.86rem;
+    font-weight: 500;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 50;
+  }
+  #toast.show{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  input[type="file"]{ display: none; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }
+</style>
 </head>
-
 <body>
 
-    <main class="container">
+<div class="wrap">
+  <header>
+    <svg class="mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="46" r="24" stroke="#f5ede7" stroke-width="8"/>
+      <circle cx="60" cy="58" r="24" stroke="#c4707d" stroke-width="8"/>
+    </svg>
+    <h1>Central de Links</h1>
+    <p>Lash Laís Martins</p>
+  </header>
 
-        <header>
-            <!-- ALTERE AQUI O NOME DO SEU SITE -->
-            <h1>Meus Sites</h1>
+  <div class="list" id="list"></div>
 
-            <p class="subtitulo">
-                Acesse ou copie rapidamente os links disponíveis.
-            </p>
-        </header>
+  <div class="add-section">
+    <button class="add-btn" id="showAddBtn" type="button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Adicionar link
+    </button>
 
-        <section class="sites" id="listaSites"></section>
+    <form class="add-form" id="addForm">
+      <div class="field">
+        <label for="newName">Nome</label>
+        <input type="text" id="newName" placeholder="Ex.: Catálogo de Sobrancelhas" required>
+      </div>
+      <div class="field">
+        <label for="newUrl">Link</label>
+        <input type="url" id="newUrl" placeholder="https://..." required>
+      </div>
+      <div class="edit-actions">
+        <button type="button" class="btn-text btn-cancel" id="cancelAddBtn">Cancelar</button>
+        <button type="submit" class="btn-text btn-save">Salvar link</button>
+      </div>
+    </form>
+  </div>
 
-        <footer>
-            © <span id="ano"></span> - Meus Sites
-        </footer>
+  <footer>
+    <button id="exportBtn" type="button">Exportar backup</button>
+    <button id="importBtn" type="button">Importar backup</button>
+    <input type="file" id="importFile" accept="application/json">
+  </footer>
+</div>
 
-    </main>
+<div id="toast"></div>
 
+<script>
+(function(){
+  const STORAGE_KEY = "central-links-dados";
 
-    <script>
-        /*
-        ==========================================
-        ADICIONE, REMOVA OU EDITE SEUS SITES AQUI
-        ==========================================
+  const defaultLinks = [
+    { id: "laserday", name: "Laser Day", url: "https://alaismartins.github.io/laserday/" },
+    { id: "catalogo-laser", name: "Catálogo Laser", url: "https://alaismartins.github.io/thebeautyspace/" },
+    { id: "catalogo-cilios", name: "Catálogo Cílios", url: "https://alaismartins.github.io/alaismartins/" },
+    { id: "controle-financeiro", name: "Controle Financeiro", url: "https://alaismartins.github.io/app-controle-financeiro-lais-martins/" },
+    { id: "app-laserday", name: "App Laser Day", url: "https://alaismartins.github.io/app-laserday/" },
+    { id: "catalogo-noivas", name: "Catálogo para Noivas", url: "https://alaismartins.github.io/catalogoparanoivas/" }
+  ];
 
-        Para adicionar um novo site, copie este modelo:
+  function loadLinks(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return defaultLinks.slice();
+      const parsed = JSON.parse(raw);
+      if(Array.isArray(parsed) && parsed.length) return parsed;
+      return defaultLinks.slice();
+    }catch(e){
+      return defaultLinks.slice();
+    }
+  }
 
-        {
-            nome: "Nome do novo site",
-            link: "https://seu-link-aqui.com/"
-        },
+  function saveLinks(links){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+  }
 
-        e coloque dentro da lista abaixo.
-        */
+  let links = loadLinks();
+  let openPanelId = null;
+  let openEditId = null;
 
-        const sites = [
-            {
-                nome: "Laser Day",
-                link: "https://alaismartins.github.io/laserday/"
-            },
-            {
-                nome: "Catálogo Laser",
-                link: "https://alaismartins.github.io/thebeautyspace/"
-            },
-            {
-                nome: "Catálogo Cílios",
-                link: "https://alaismartins.github.io/alaismartins/"
-            },
-            {
-                nome: "Controle Financeiro",
-                link: "https://alaismartins.github.io/app-controle-financeiro-lais-martins/"
-            },
-            {
-                nome: "App Laser Day",
-                link: "https://alaismartins.github.io/app-laserday/"
-            },
-            {
-                nome: "Catálogo para noivas",
-                link: "https://alaismartins.github.io/catalogoparanoivas/"
-            }
-        ];
+  const listEl = document.getElementById("list");
 
+  function uid(){
+    return "id-" + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+  }
 
-        const listaSites = document.getElementById("listaSites");
+  function escapeHtml(str){
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
 
+  function render(){
+    listEl.innerHTML = "";
 
-        sites.forEach((site, index) => {
+    if(links.length === 0){
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = "Nenhum link ainda. Toque em \"Adicionar link\" para começar.";
+      listEl.appendChild(empty);
+      return;
+    }
 
-            const card = document.createElement("article");
+    links.forEach(link => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.dataset.id = link.id;
 
-            card.className = "site-card";
+      card.innerHTML = `
+        <div class="card-main">
+          <div class="card-name">${escapeHtml(link.name)}</div>
+          <div class="card-actions">
+            <button class="icon-btn edit-toggle" title="Editar" type="button">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="btn btn-copy copy-toggle" type="button">Copiar</button>
+            <a class="btn btn-open" href="${escapeHtml(link.url)}" target="_blank" rel="noopener">Abrir</a>
+          </div>
+        </div>
+        <div class="link-panel" id="panel-${link.id}">
+          <div class="link-panel-inner">
+            <div class="link-url">${escapeHtml(link.url)}</div>
+            <button class="copy-now" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span>Copiar</span>
+            </button>
+          </div>
+        </div>
+        <div class="edit-row" id="edit-${link.id}">
+          <div class="field">
+            <label>Nome</label>
+            <input type="text" class="edit-name" value="${escapeHtml(link.name)}">
+          </div>
+          <div class="field">
+            <label>Link</label>
+            <input type="url" class="edit-url" value="${escapeHtml(link.url)}">
+          </div>
+          <div class="edit-actions">
+            <button type="button" class="btn-text btn-delete">Excluir</button>
+            <button type="button" class="btn-text btn-cancel">Cancelar</button>
+            <button type="button" class="btn-text btn-save">Salvar</button>
+          </div>
+        </div>
+      `;
 
-            card.innerHTML = `
-                <div class="site-nome">${site.nome}</div>
+      listEl.appendChild(card);
+    });
 
-                <div class="botoes">
+    attachCardEvents();
+  }
 
-                    <a
-                        href="${site.link}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="botao acessar"
-                    >
-                        Acessar site
-                    </a>
+  function closeAllPanels(){
+    document.querySelectorAll(".link-panel.open").forEach(p => p.classList.remove("open"));
+    openPanelId = null;
+  }
 
-                    <button
-                        class="botao copiar"
-                        onclick="mostrarLink(${index})"
-                    >
-                        Copiar link
-                    </button>
+  function closeAllEdits(){
+    document.querySelectorAll(".edit-row.open").forEach(e => e.classList.remove("open"));
+    openEditId = null;
+  }
 
-                </div>
+  function attachCardEvents(){
+    document.querySelectorAll(".card").forEach(card => {
+      const id = card.dataset.id;
+      const link = links.find(l => l.id === id);
 
-                <div
-                    class="link-area"
-                    id="link-area-${index}"
-                >
-                    <input
-                        type="text"
-                        class="link-input"
-                        id="link-${index}"
-                        value="${site.link}"
-                        readonly
-                    >
-
-                    <button
-                        class="botao copiar"
-                        onclick="copiarLink(${index})"
-                    >
-                        Copiar
-                    </button>
-                </div>
-
-                <div
-                    class="mensagem"
-                    id="mensagem-${index}"
-                >
-                    ✓ Link copiado com sucesso!
-                </div>
-            `;
-
-            listaSites.appendChild(card);
-
-        });
-
-
-        function mostrarLink(index) {
-
-            const area = document.getElementById(
-                `link-area-${index}`
-            );
-
-            const input = document.getElementById(
-                `link-${index}`
-            );
-
-            const mensagem = document.getElementById(
-                `mensagem-${index}`
-            );
-
-            area.classList.toggle("ativo");
-            mensagem.classList.remove("ativo");
-
-            if (area.classList.contains("ativo")) {
-                input.select();
-            }
-
+      card.querySelector(".copy-toggle").addEventListener("click", () => {
+        const panel = card.querySelector(".link-panel");
+        const isOpen = panel.classList.contains("open");
+        closeAllPanels();
+        closeAllEdits();
+        if(!isOpen){
+          panel.classList.add("open");
+          openPanelId = id;
         }
+      });
 
+      card.querySelector(".copy-now").addEventListener("click", (e) => {
+        copyText(link.url, e.currentTarget);
+      });
 
-        async function copiarLink(index) {
-
-            const input = document.getElementById(
-                `link-${index}`
-            );
-
-            const mensagem = document.getElementById(
-                `mensagem-${index}`
-            );
-
-            try {
-
-                await navigator.clipboard.writeText(input.value);
-
-            } catch (erro) {
-
-                input.select();
-                document.execCommand("copy");
-
-            }
-
-            mensagem.classList.add("ativo");
-
-            setTimeout(() => {
-                mensagem.classList.remove("ativo");
-            }, 2500);
-
+      card.querySelector(".edit-toggle").addEventListener("click", () => {
+        const editRow = card.querySelector(".edit-row");
+        const isOpen = editRow.classList.contains("open");
+        closeAllEdits();
+        closeAllPanels();
+        if(!isOpen){
+          editRow.classList.add("open");
+          openEditId = id;
         }
+      });
 
+      const editRow = card.querySelector(".edit-row");
+      editRow.querySelector(".btn-cancel").addEventListener("click", () => {
+        editRow.classList.remove("open");
+        openEditId = null;
+      });
 
-        document.getElementById("ano").textContent =
-            new Date().getFullYear();
+      editRow.querySelector(".btn-save").addEventListener("click", () => {
+        const newName = editRow.querySelector(".edit-name").value.trim();
+        const newUrl = editRow.querySelector(".edit-url").value.trim();
+        if(!newName || !newUrl){
+          showToast("Preencha nome e link.");
+          return;
+        }
+        link.name = newName;
+        link.url = newUrl;
+        saveLinks(links);
+        render();
+        showToast("Link atualizado.");
+      });
 
-    </script>
+      editRow.querySelector(".btn-delete").addEventListener("click", () => {
+        if(confirm(`Excluir "${link.name}"?`)){
+          links = links.filter(l => l.id !== id);
+          saveLinks(links);
+          render();
+          showToast("Link excluído.");
+        }
+      });
+    });
+  }
+
+  function copyText(text, btnEl){
+    const done = () => {
+      if(btnEl){
+        const original = btnEl.querySelector("span") ? btnEl.querySelector("span").textContent : btnEl.textContent;
+        btnEl.classList.add("copied");
+        if(btnEl.querySelector("span")){
+          btnEl.querySelector("span").textContent = "Copiado!";
+        }
+        setTimeout(() => {
+          btnEl.classList.remove("copied");
+          if(btnEl.querySelector("span")){
+            btnEl.querySelector("span").textContent = original;
+          }
+        }, 1400);
+      }
+      showToast("Link copiado.");
+    };
+
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    }else{
+      fallbackCopy(text, done);
+    }
+  }
+
+  function fallbackCopy(text, cb){
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+    if(cb) cb();
+  }
+
+  let toastTimer = null;
+  function showToast(msg){
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+  }
+
+  // Add form
+  const showAddBtn = document.getElementById("showAddBtn");
+  const addForm = document.getElementById("addForm");
+  const cancelAddBtn = document.getElementById("cancelAddBtn");
+
+  showAddBtn.addEventListener("click", () => {
+    addForm.classList.add("open");
+    showAddBtn.style.display = "none";
+    document.getElementById("newName").focus();
+  });
+
+  cancelAddBtn.addEventListener("click", () => {
+    addForm.classList.remove("open");
+    showAddBtn.style.display = "flex";
+    addForm.reset();
+  });
+
+  addForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("newName").value.trim();
+    const url = document.getElementById("newUrl").value.trim();
+    if(!name || !url) return;
+    links.push({ id: uid(), name, url });
+    saveLinks(links);
+    addForm.reset();
+    addForm.classList.remove("open");
+    showAddBtn.style.display = "flex";
+    render();
+    showToast("Link adicionado.");
+  });
+
+  // Export / Import
+  document.getElementById("exportBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(links, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "central-de-links-backup.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  const importFile = document.getElementById("importFile");
+  document.getElementById("importBtn").addEventListener("click", () => importFile.click());
+
+  importFile.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try{
+        const data = JSON.parse(ev.target.result);
+        if(!Array.isArray(data)) throw new Error("formato inválido");
+        const cleaned = data.filter(item => item && item.name && item.url)
+          .map(item => ({ id: item.id || uid(), name: String(item.name), url: String(item.url) }));
+        links = cleaned;
+        saveLinks(links);
+        render();
+        showToast("Backup importado.");
+      }catch(err){
+        showToast("Arquivo inválido.");
+      }
+    };
+    reader.readAsText(file);
+    importFile.value = "";
+  });
+
+  render();
+
+  if("serviceWorker" in navigator){
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
